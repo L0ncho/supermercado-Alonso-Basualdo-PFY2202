@@ -52,13 +52,13 @@ function Inicio() {
               const estado = obtenerEstadoStock(producto)
               return (
                 <tr key={producto.id}>
-                  <td>
+                  <td data-label="Producto">
                     <Link to={`/productos/${producto.id}`}>{producto.nombre}</Link>
                   </td>
-                  <td>{producto.categoria}</td>
-                  <td>{formatearPrecio(producto.precio)}</td>
-                  <td>{producto.stock}</td>
-                  <td>
+                  <td data-label="Categoría">{producto.categoria}</td>
+                  <td data-label="Precio">{formatearPrecio(producto.precio)}</td>
+                  <td data-label="Stock">{producto.stock}</td>
+                  <td data-label="Estado">
                     <span className={`estado estado--${estado.clave}`}>{estado.etiqueta}</span>
                   </td>
                 </tr>
