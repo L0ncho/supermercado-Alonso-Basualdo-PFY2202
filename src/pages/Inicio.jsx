@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import { productos } from '../data/productos.js'
 import { formatearPrecio } from '../utils/formato.js'
 import { obtenerEstadoStock } from '../utils/inventario.js'
+import './Inicio.css'
 
 const categorias = ['Todas', ...new Set(productos.map((p) => p.categoria))]
 

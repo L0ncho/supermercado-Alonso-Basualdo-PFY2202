@@ -1,5 +1,6 @@
 import { Link, Outlet } from 'react-router'
 import MenuInferior from './MenuInferior.jsx'
+import './Layout.css'
 
 function Layout() {
   return (

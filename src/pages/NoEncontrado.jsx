@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router'
+import './NoEncontrado.css'
 
 function NoEncontrado() {
   const navigate = useNavigate()

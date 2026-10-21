@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import './ComoComprar.css'
 
 function ComoComprar() {
   return (
@@ -6,7 +7,7 @@ function ComoComprar() {
       <title>Cómo comprar | Supermercado El Ahorro</title>
       <h1>Cómo comprar</h1>
 
-      <section>
+      <section className="como-comprar__seccion">
         <h2>Pasos para comprar</h2>
         <ol>
           <li>Revisa el inventario y confirma que el producto tenga stock disponible.</li>
@@ -17,7 +18,7 @@ function ComoComprar() {
         </ol>
       </section>
 
-      <section>
+      <section className="como-comprar__seccion">
         <h2>Medios de pago</h2>
         <ul>
           <li>Efectivo</li>
@@ -26,7 +27,7 @@ function ComoComprar() {
         </ul>
       </section>
 
-      <section>
+      <section className="como-comprar__seccion">
         <h2>Despacho</h2>
         <p>
           Hacemos despacho a domicilio dentro de la comuna de lunes a sábado.
@@ -36,7 +37,7 @@ function ComoComprar() {
         </p>
       </section>
 
-      <Link to="/">Ver el inventario</Link>
+      <Link to="/" className="como-comprar__volver">Ver el inventario</Link>
     </>
   )
 }

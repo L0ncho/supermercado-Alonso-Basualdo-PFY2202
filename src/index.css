@@ -41,3 +41,80 @@ select,
 textarea {
   font: inherit;
 }
+
+h1,
+h2 {
+  margin: 0 0 0.75rem;
+  line-height: 1.2;
+  color: var(--color-primario-oscuro);
+}
+
+h1 {
+  font-size: 1.75rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+}
+
+a {
+  color: var(--color-primario);
+  font-weight: 600;
+}
+
+a:hover {
+  color: var(--color-primario-oscuro);
+}
+
+button {
+  padding: 0.6rem 1.1rem;
+  border: 1px solid var(--color-primario);
+  border-radius: 0.5rem;
+  background-color: var(--color-primario);
+  color: var(--color-superficie);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--color-primario-oscuro);
+  border-color: var(--color-primario-oscuro);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-primario);
+  outline-offset: 2px;
+}
+
+/* Insignias de estado del stock: fondo sólido con texto claro para asegurar contraste */
+.estado {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  color: var(--color-superficie);
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.estado--disponible {
+  background-color: var(--color-exito);
+}
+
+.estado--bajo {
+  background-color: var(--color-alerta);
+}
+
+.estado--agotado {
+  background-color: var(--color-peligro);
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}

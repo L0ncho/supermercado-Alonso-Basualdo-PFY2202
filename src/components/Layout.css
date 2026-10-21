@@ -1,0 +1,29 @@
+.layout__encabezado {
+  background-color: var(--color-primario);
+  padding: 1rem;
+}
+
+.layout__marca {
+  display: block;
+  max-width: 960px;
+  margin: 0 auto;
+  color: var(--color-superficie);
+  font-size: 1.25rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.layout__marca:hover {
+  color: var(--color-superficie);
+  text-decoration: underline;
+}
+
+.layout__marca:focus-visible {
+  outline-color: var(--color-superficie);
+}
+
+.layout__contenido {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}

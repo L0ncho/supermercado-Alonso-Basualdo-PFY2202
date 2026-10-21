@@ -1,0 +1,35 @@
+.como-comprar__seccion {
+  margin-bottom: 1.5rem;
+  padding: 1.25rem;
+  border: 1px solid var(--color-borde);
+  border-radius: 0.75rem;
+  background-color: var(--color-superficie);
+}
+
+.como-comprar__seccion ol,
+.como-comprar__seccion ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.como-comprar__seccion li + li {
+  margin-top: 0.5rem;
+}
+
+.como-comprar__seccion p {
+  margin: 0;
+}
+
+.como-comprar__volver {
+  display: inline-block;
+  padding: 0.6rem 1.1rem;
+  border-radius: 0.5rem;
+  background-color: var(--color-primario);
+  color: var(--color-superficie);
+  text-decoration: none;
+}
+
+.como-comprar__volver:hover {
+  background-color: var(--color-primario-oscuro);
+  color: var(--color-superficie);
+}

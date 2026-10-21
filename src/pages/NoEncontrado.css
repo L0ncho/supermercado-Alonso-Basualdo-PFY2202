@@ -1,0 +1,17 @@
+.no-encontrado {
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.no-encontrado p {
+  color: var(--color-texto-suave);
+}
+
+.no-encontrado__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}

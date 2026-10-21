@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router'
 import { obtenerProductoPorId } from '../data/productos.js'
 import { formatearPrecio } from '../utils/formato.js'
 import { obtenerEstadoStock } from '../utils/inventario.js'
+import './DetalleProducto.css'
 
 function DetalleProducto() {
   const { id } = useParams()

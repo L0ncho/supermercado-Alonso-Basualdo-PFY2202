@@ -1,0 +1,48 @@
+.quienes-somos__seccion {
+  margin-bottom: 2rem;
+}
+
+.quienes-somos__seccion p {
+  max-width: 65ch;
+}
+
+/* Grilla de valores: una columna en móvil, dos en tablet y cuatro en escritorio */
+.quienes-somos__valores {
+  display: grid;
+  gap: 1rem;
+}
+
+.quienes-somos__valores h2 {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
+.quienes-somos__tarjeta {
+  padding: 1.25rem;
+  border: 1px solid var(--color-borde);
+  border-top: 4px solid var(--color-primario);
+  border-radius: 0.75rem;
+  background-color: var(--color-superficie);
+}
+
+.quienes-somos__tarjeta h3 {
+  margin: 0 0 0.5rem;
+  color: var(--color-primario-oscuro);
+}
+
+.quienes-somos__tarjeta p {
+  margin: 0;
+  color: var(--color-texto-suave);
+}
+
+@media (min-width: 600px) {
+  .quienes-somos__valores {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .quienes-somos__valores {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
