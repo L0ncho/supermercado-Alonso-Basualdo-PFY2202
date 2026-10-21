@@ -1,8 +1,8 @@
 const formateadorPesos = new Intl.NumberFormat('es-CL', {
-    Style: 'currency',
+    style: 'currency',
     currency: 'CLP',
 })
 
-export function formatearPeso(precio) {
+export function formatearPrecio(precio) {
     return formateadorPesos.format(precio)
 }
