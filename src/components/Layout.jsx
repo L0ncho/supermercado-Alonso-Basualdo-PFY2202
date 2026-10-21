@@ -1,4 +1,5 @@
 import { Link, Outlet } from 'react-router'
+import MenuInferior from './MenuInferior.jsx'
 
 function Layout() {
   return (
@@ -9,6 +10,7 @@ function Layout() {
       <main className="layout__contenido">
         <Outlet />
       </main>
+      <MenuInferior />
     </div>
   )
 }
