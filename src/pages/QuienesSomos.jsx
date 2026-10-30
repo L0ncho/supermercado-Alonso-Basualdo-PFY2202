@@ -1,16 +1,18 @@
+import TituloPagina from '../components/TituloPagina.jsx'
+import { NOMBRE_SUPERMERCADO } from '../config/sitio.js'
 import { valores } from '../data/empresa.js'
 import './QuienesSomos.css'
 
 function QuienesSomos() {
   return (
     <>
-      <title>Quiénes somos | Supermercado El Ahorro</title>
+      <TituloPagina texto="Quiénes somos" />
       <h1>Quiénes somos</h1>
 
       <section className="quienes-somos__seccion">
         <h2>Nuestra historia</h2>
         <p>
-          Supermercado El Ahorro nació en 1998 como un pequeño almacén de barrio
+          {NOMBRE_SUPERMERCADO} nació en 1998 como un pequeño almacén de barrio
           atendido por una familia. Con los años sumamos productos, proveedores y
           personas al equipo, hasta convertirnos en un supermercado de confianza
           para la comunidad, sin perder la atención cercana con que partimos.

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
+import TituloPagina from '../components/TituloPagina.jsx'
 import { productos } from '../data/productos.js'
 import { formatearPrecio } from '../utils/formato.js'
 import { obtenerEstadoStock } from '../utils/inventario.js'
@@ -21,7 +22,7 @@ function Inicio() {
 
   return (
     <section className="inicio">
-      <title>Inventario | Supermercado El Ahorro</title>
+      <TituloPagina texto="Inventario" />
       <h1>Inventario</h1>
       <p className="inicio__resumen">
         {productos.length} productos registrados · {porReponer} requieren reposición

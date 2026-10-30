@@ -1,10 +1,11 @@
 import { Link } from 'react-router'
+import TituloPagina from '../components/TituloPagina.jsx'
 import './ComoComprar.css'
 
 function ComoComprar() {
   return (
     <>
-      <title>Cómo comprar | Supermercado El Ahorro</title>
+      <TituloPagina texto="Cómo comprar" />
       <h1>Cómo comprar</h1>
 
       <section className="como-comprar__seccion">

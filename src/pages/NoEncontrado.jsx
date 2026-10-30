@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router'
+import TituloPagina from '../components/TituloPagina.jsx'
 import './NoEncontrado.css'
 
 function NoEncontrado() {
@@ -6,7 +7,7 @@ function NoEncontrado() {
 
   return (
     <section className="no-encontrado">
-      <title>Página no encontrada | Supermercado El Ahorro</title>
+      <TituloPagina texto="Página no encontrada" />
       <h1>Página no encontrada</h1>
       <p>La dirección que buscas no existe o fue movida.</p>
       <div className="no-encontrado__acciones">
