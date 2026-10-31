@@ -38,9 +38,11 @@ Los componentes y hooks que evalúa la actividad (`BrowserRouter`, `Routes`, `Ro
 
 ## Funcionalidades
 
+- Página de inicio con bienvenida, resumen del inventario y accesos rápidos a las demás secciones.
 - Inventario en tabla con filtro por categoría.
-- Resumen con el total de productos y cuántos requieren reposición.
-- Estado de stock por producto: Disponible, Stock Bajo o Agotado, con insignias de color.
+- Resumen con el total de productos, cuántos tienen stock bajo y cuántos están agotados.
+- Estado de stock por producto: Disponible, Stock bajo o Agotado, con insignias de color.
+- Mensajes de carga mientras se obtienen los productos y mensaje de error si la carga falla.
 - Página de detalle de cada producto, con mensaje si el producto no existe.
 - Páginas informativas: Quiénes somos y Cómo comprar.
 - Página 404 para rutas inexistentes.
@@ -52,13 +54,14 @@ Los componentes y hooks que evalúa la actividad (`BrowserRouter`, `Routes`, `Ro
 ## Rutas
 
 
-| Ruta             | Componente        | Descripción                                |
-| ---------------- | ----------------- | ------------------------------------------ |
-| `/`              | `Inicio`          | Inventario con filtro por categoría        |
-| `/productos/:id` | `DetalleProducto` | Detalle de un producto (ruta dinámica)     |
-| `/quienes-somos` | `QuienesSomos`    | Historia, misión, visión y valores         |
-| `/como-comprar`  | `ComoComprar`     | Pasos de compra, medios de pago y despacho |
-| `*`              | `NoEncontrado`    | Cualquier ruta que no existe (404)         |
+| Ruta             | Componente        | Descripción                                          |
+| ---------------- | ----------------- | ---------------------------------------------------- |
+| `/`              | `Inicio`          | Bienvenida, resumen del inventario y accesos rápidos |
+| `/inventario`    | `Inventario`      | Inventario con resumen y filtro por categoría        |
+| `/productos/:id` | `DetalleProducto` | Detalle de un producto (ruta dinámica)               |
+| `/quienes-somos` | `QuienesSomos`    | Historia, misión, visión y valores                   |
+| `/como-comprar`  | `ComoComprar`     | Pasos de compra, medios de pago y despacho           |
+| `*`              | `NoEncontrado`    | Cualquier ruta que no existe (404)                   |
 
 
 Todas las rutas se muestran dentro del componente `Layout`.
@@ -72,13 +75,13 @@ Todas las rutas se muestran dentro del componente `Layout`.
 | `Routes` y `Route`     | `src/App.jsx`            | Definen las rutas de forma declarativa                                                                                                                      |
 | Ruta layout + `Outlet` | `App.jsx` y `Layout.jsx` | Una ruta sin `path` con `element={<Layout />}` agrupa a las demás; `Outlet` indica dónde se dibuja la página actual, entre el encabezado y el menú inferior |
 | Ruta `index`           | `App.jsx`                | Muestra `Inicio` en `/`                                                                                                                                     |
-| `NavLink`              | `MenuInferior.jsx`       | Agrega la clase `active` y `aria-current="page"` al enlace de la página actual; en `/` se usa `end` para que no quede activo en todas las rutas             |
-| `useParams`            | `DetalleProducto.jsx`    | Lee el `:id` de la URL                                                                                                                                      |
+| `NavLink`              | `MenuInferior.jsx`       | Menú de 4 opciones (Inicio, Inventario, Quiénes somos y Cómo comprar). Agrega la clase `active` y `aria-current="page"` al enlace de la página actual; en `/` se usa `end` para que no quede activo en todas las rutas |
+| `useParams`            | `DetalleProducto.jsx`    | Lee el `:id` de la URL; `buscarProductoPorId` busca ese producto en la lista que entrega `useProductos`                                                    |
 | `useNavigate`          | `NoEncontrado.jsx`       | El botón "Volver atrás" ejecuta `navigate(-1)`                                                                                                              |
 | `Link`                 | Todas las páginas        | Enlaces internos sin recargar la página                                                                                                                     |
 
 
-- **Por qué** `Number(id)`**:** `useParams` siempre entrega texto (`"7"`), pero los `id` de los productos son números. `obtenerProductoPorId` convierte el valor con `Number()` para que la comparación estricta con `===` funcione.
+- **Por qué** `Number(id)`**:** `useParams` siempre entrega texto (`"7"`), pero los `id` de los productos son números. `buscarProductoPorId(productos, id)` (en `src/utils/inventario.js`) convierte el valor con `Number()` para que la comparación estricta con `===` funcione.
 - **Por qué** `Link` **y no** `<a>`**:** un `<a href>` recarga toda la aplicación y pierde el estado; `Link` cambia la URL y React solo vuelve a renderizar la página.
 
 
@@ -87,10 +90,14 @@ Todas las rutas se muestran dentro del componente `Layout`.
 
 ```
 src/
-├── components/   Componentes reutilizables: Layout y MenuInferior, cada uno con su .css
-├── data/         Datos de ejemplo: productos.js (inventario) y empresa.js (valores)
-├── pages/        Una página por ruta, cada una con su .css
-├── utils/        Funciones puras: formato.js (precios en CLP) e inventario.js (estado de stock)
+├── components/   Componentes reutilizables: Layout, MenuInferior, Aviso, EstadoStock y TituloPagina
+│   └── inventario/   Piezas del inventario: ResumenInventario, FiltroCategoria, TablaProductos y FilaProducto
+├── config/       sitio.js: nombre del supermercado (NOMBRE_SUPERMERCADO)
+├── data/         Datos de ejemplo: productos.js (inventario) y empresa.js (textos y valores)
+├── hooks/        useProductos.js: obtiene los productos y expone los estados de carga y error
+├── pages/        Una página por ruta
+├── services/     inventarioService.js: obtenerProductos() simula una consulta que tarda 600 ms
+├── utils/        Funciones puras: formato.js (precios en CLP) e inventario.js (estado de stock, resumen y búsqueda por id)
 ├── App.jsx       Definición de las rutas
 ├── main.jsx      Punto de entrada: monta la app dentro de BrowserRouter
 └── index.css     Variables CSS globales y estilos base
@@ -103,10 +110,13 @@ src/
 
 | Decisión                     | Detalle                                                                                                                                                                                                                                   |
 | ---------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Estado derivado en el filtro | Solo la categoría elegida se guarda con `useState`; la lista filtrada y el número de productos por reponer se calculan en cada render, sin duplicar estado                                                                                |
-| Funciones puras en `utils`   | `formatearPrecio` usa `Intl.NumberFormat('es-CL')` con CLP; `obtenerEstadoStock` recibe un producto y devuelve `{ clave, etiqueta }`. No dependen de React y se reutilizan en Inicio y Detalle                                            |
-| `<title>` por página         | React 19 mueve el `<title>` de cada página al `<head>`, sin librerías extra. El detalle usa el nombre del producto                                                                                                                        |
-| CSS por componente           | Cada componente y página importa su propio `.css`, con nombres BEM (`bloque__elemento--modificador`, por ejemplo `estado--agotado`)                                                                                                       |
+| Capas de datos               | Datos (`data/productos.js`) → servicio (`obtenerProductos`, devuelve una Promise) → hook (`useProductos`) → páginas. Las páginas no importan los datos directamente, así el origen puede cambiar sin tocarlas                            |
+| Estados de carga y error     | `useProductos` entrega `{ productos, cargando, error }` y usa una variable `activo` para no actualizar el estado si el componente se desmonta. Las páginas muestran `Aviso` mientras cargan y `<Aviso tipo="error">` si falla (`role="status"` o `role="alert"`). Con `SIMULAR_ERROR = true` en el servicio se prueba el error |
+| Componentes reutilizables    | `EstadoStock` (insignia de estado), `ResumenInventario` (se usa en Inicio e Inventario), `TablaProductos` y `FilaProducto` (tabla y cada fila), `FiltroCategoria` (select de categorías) y `TituloPagina` (título de la pestaña)      |
+| Estado levantado en el filtro | `Inventario` guarda la categoría elegida con `useState` y se la pasa a `FiltroCategoria`, que es controlado (`valor` y `onCambiar`) y no tiene estado propio. Las categorías y la lista filtrada se calculan en cada render, sin duplicar estado |
+| Funciones puras en `utils`   | `formatearPrecio` usa `Intl.NumberFormat('es-CL')` con CLP; `obtenerEstadoStock` devuelve `{ clave, etiqueta }`; `resumirInventario` cuenta los productos por estado con `reduce`; `buscarProductoPorId` busca por id. No dependen de React |
+| `<title>` por página         | React 19 mueve el `<title>` de cada página al `<head>`, sin librerías extra. `TituloPagina` arma el texto con el nombre de `src/config/sitio.js`. El detalle usa el nombre del producto                                                    |
+| CSS por componente           | Cada componente y página importa su propio `.css` cuando tiene estilos, con nombres BEM (`bloque__elemento--modificador`, por ejemplo `estado-stock--agotado`)                                                                           |
 | Variables globales           | Los colores se definen una sola vez en `:root` (`src/index.css`) y todos los archivos usan `var(--color-...)`                                                                                                                             |
 | Tabla a tarjetas en móvil    | Bajo 600px cada fila se muestra como tarjeta y cada celda toma su etiqueta de `data-label` con `td::before`; desde 600px es una tabla normal. El encabezado se oculta solo visualmente para que los lectores de pantalla lo sigan leyendo |
 
