@@ -145,6 +145,71 @@ src/
 
 
 
+## Diagramas
+
+### Navegación
+
+Muestra los dos menús del `Layout`, las rutas a las que lleva cada uno, desde dónde se abre el detalle de un producto y la ruta comodín 404.
+
+```mermaid
+flowchart TD
+  Layout["Layout (envuelve todas las rutas)"]
+
+  Layout --> MenuGestion["MenuGestion (encabezado)"]
+  Layout --> MenuInferior["MenuInferior (fijo abajo)"]
+  Layout -->|"cualquier otra ruta (*)"| NoEncontrado["NoEncontrado: página 404"]
+
+  MenuGestion --> Ingresar["/articulos/nuevo: Ingresar artículo"]
+  MenuGestion --> Listado["/articulos: Listado de artículos"]
+
+  MenuInferior --> Inicio["/: Inicio"]
+  MenuInferior --> Inventario["/inventario: Inventario"]
+  MenuInferior --> Quienes["/quienes-somos: Quiénes somos"]
+  MenuInferior --> Como["/como-comprar: Cómo comprar"]
+
+  Inventario -->|"enlace en TablaProductos"| Detalle["/productos/:id: Detalle del producto"]
+  Listado -->|"enlace en TablaArticulos"| Detalle
+```
+
+### Flujo de datos
+
+Muestra cómo se cargan los productos en el estado global, cómo lo leen las páginas y cómo un artículo nuevo del formulario actualiza todas las vistas.
+
+```mermaid
+---
+config:
+  flowchart:
+    nodeSpacing: 70
+    rankSpacing: 90
+---
+flowchart TD
+  Servicio["inventarioService: obtenerProductos()"]
+
+  subgraph Provider["InventarioProvider"]
+    Reducer["useReducer con inventarioReducer"]
+    Estado["Estado global: productos, cargando, error"]
+    Agregar["agregarProducto(producto)"]
+  end
+
+  Hook["useInventario()"]
+
+  Servicio -->|"CARGA_INICIADA, luego<br/>CARGA_EXITOSA o CARGA_FALLIDA"| Reducer
+  Reducer -->|"nuevo estado"| Estado
+  Estado --> Hook
+
+  Hook --> Inicio["Inicio"]
+  Hook --> Inventario["Inventario"]
+  Hook --> Listado["ListadoArticulos"]
+  Hook --> Detalle["DetalleProducto"]
+  Hook --> Ingresar["IngresarArticulo"]
+
+  Ingresar --> Formulario["FormularioArticulo"]
+  Formulario -->|"onAgregar(articulo)"| Agregar
+  Agregar -->|"AGREGAR_PRODUCTO<br/>(id = mayor id + 1)"| Reducer
+```
+
+
+
 ## Requisitos
 
 - Node.js 22.22 o superior.
