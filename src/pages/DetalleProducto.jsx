@@ -1,13 +1,37 @@
 import { Link, useParams } from 'react-router'
+import Aviso from '../components/Aviso.jsx'
 import EstadoStock from '../components/EstadoStock.jsx'
 import TituloPagina from '../components/TituloPagina.jsx'
-import { obtenerProductoPorId } from '../data/productos.js'
+import { useProductos } from '../hooks/useProductos.js'
 import { formatearPrecio } from '../utils/formato.js'
+import { buscarProductoPorId } from '../utils/inventario.js'
 import './DetalleProducto.css'
 
 function DetalleProducto() {
   const { id } = useParams()
-  const producto = obtenerProductoPorId(id)
+  const { productos, cargando, error } = useProductos()
+
+  if (cargando) {
+    return (
+      <section className="detalle">
+        <TituloPagina texto="Detalle del producto" />
+        <h1>Detalle del producto</h1>
+        <Aviso>Cargando producto…</Aviso>
+      </section>
+    )
+  }
+
+  if (error) {
+    return (
+      <section className="detalle">
+        <TituloPagina texto="Detalle del producto" />
+        <h1>Detalle del producto</h1>
+        <Aviso tipo="error">{error.message}</Aviso>
+      </section>
+    )
+  }
+
+  const producto = buscarProductoPorId(productos, id)
 
   if (!producto) {
     return (

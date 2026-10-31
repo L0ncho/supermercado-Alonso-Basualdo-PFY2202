@@ -1,4 +1,12 @@
-// Valores de la empresa que se muestran en la página Quiénes somos.
+import { NOMBRE_SUPERMERCADO } from '../config/sitio.js'
+
+// Textos y valores de la empresa que se muestran en la página Quiénes somos.
+export const empresa = {
+  historia: `${NOMBRE_SUPERMERCADO} nació en 1998 como un pequeño almacén de barrio atendido por una familia. Con los años sumamos productos, proveedores y personas al equipo, hasta convertirnos en un supermercado de confianza para la comunidad, sin perder la atención cercana con que partimos.`,
+  mision: 'Ofrecer productos de calidad a precios justos, con un inventario bien gestionado que asegure que encuentres lo que necesitas cuando lo necesitas.',
+  vision: 'Ser el supermercado preferido del barrio, reconocido por su buen servicio, sus precios convenientes y su compromiso con la comunidad.',
+}
+
 export const valores = [
   {
     id: 1,

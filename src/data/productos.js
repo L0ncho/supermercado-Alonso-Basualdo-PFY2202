@@ -13,8 +13,3 @@ export const productos = [
   { id: 11, nombre: 'Cloro gel 900 ml', categoria: 'Limpieza', precio: 1490, stock: 22, stockMinimo: 10 },
   { id: 12, nombre: 'Agua mineral sin gas 1,6 L', categoria: 'Bebidas', precio: 890, stock: 48, stockMinimo: 20 },
 ]
-
-// El id llega como texto desde la URL, por eso se convierte a número.
-export function obtenerProductoPorId(id) {
-  return productos.find((producto) => producto.id === Number(id))
-}

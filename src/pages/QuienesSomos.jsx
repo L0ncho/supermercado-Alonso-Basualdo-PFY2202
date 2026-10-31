@@ -1,6 +1,5 @@
 import TituloPagina from '../components/TituloPagina.jsx'
-import { NOMBRE_SUPERMERCADO } from '../config/sitio.js'
-import { valores } from '../data/empresa.js'
+import { empresa, valores } from '../data/empresa.js'
 import './QuienesSomos.css'
 
 function QuienesSomos() {
@@ -11,28 +10,17 @@ function QuienesSomos() {
 
       <section className="quienes-somos__seccion">
         <h2>Nuestra historia</h2>
-        <p>
-          {NOMBRE_SUPERMERCADO} nació en 1998 como un pequeño almacén de barrio
-          atendido por una familia. Con los años sumamos productos, proveedores y
-          personas al equipo, hasta convertirnos en un supermercado de confianza
-          para la comunidad, sin perder la atención cercana con que partimos.
-        </p>
+        <p>{empresa.historia}</p>
       </section>
 
       <section className="quienes-somos__seccion">
         <h2>Misión</h2>
-        <p>
-          Ofrecer productos de calidad a precios justos, con un inventario bien
-          gestionado que asegure que encuentres lo que necesitas cuando lo necesitas.
-        </p>
+        <p>{empresa.mision}</p>
       </section>
 
       <section className="quienes-somos__seccion">
         <h2>Visión</h2>
-        <p>
-          Ser el supermercado preferido del barrio, reconocido por su buen servicio,
-          sus precios convenientes y su compromiso con la comunidad.
-        </p>
+        <p>{empresa.vision}</p>
       </section>
 
       <section className="quienes-somos__valores">

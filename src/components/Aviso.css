@@ -1,0 +1,15 @@
+/* Mensajes de carga y error */
+.aviso {
+  margin: 0 0 1rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--color-borde);
+  border-left: 4px solid var(--color-primario);
+  border-radius: 0.75rem;
+  background-color: var(--color-superficie);
+  color: var(--color-texto);
+}
+
+.aviso--error {
+  border-left-color: var(--color-peligro);
+  color: var(--color-peligro);
+}

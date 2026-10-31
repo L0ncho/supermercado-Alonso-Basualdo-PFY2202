@@ -16,3 +16,8 @@ export function resumirInventario(productos) {
         {total: 0, disponible: 0, bajo: 0, agotado: 0},
     )
 }
+
+// El id llega como texto desde la URL, por eso se convierte a número.
+export function buscarProductoPorId(productos, id) {
+    return productos.find((producto) => producto.id === Number(id))
+}
