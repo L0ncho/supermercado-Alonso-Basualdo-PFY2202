@@ -6,6 +6,8 @@ import DetalleProducto from './pages/DetalleProducto.jsx'
 import QuienesSomos from './pages/QuienesSomos.jsx'
 import ComoComprar from './pages/ComoComprar.jsx'
 import NoEncontrado from './pages/NoEncontrado.jsx'
+import IngresarArticulo from './pages/IngresarArticulo.jsx'
+import ListadoArticulos from './pages/ListadoArticulos.jsx'
 
 
 function App() {
@@ -17,6 +19,8 @@ function App() {
         <Route path="productos/:id" element={<DetalleProducto />} />
         <Route path="quienes-somos" element={<QuienesSomos />} />
         <Route path="como-comprar" element={<ComoComprar />} />
+        <Route path="articulos" element={<ListadoArticulos />} />
+        <Route path="articulos/nuevo" element={<IngresarArticulo />} />
         <Route path="*" element={<NoEncontrado />} />
       </Route>
     </Routes>
