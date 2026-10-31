@@ -18,7 +18,7 @@ function Inventario() {
       : productos.filter((p) => p.categoria === categoria)
 
   return (
-    <section className="inicio">
+    <section>
       <TituloPagina texto="Inventario" />
       <h1>Inventario</h1>
       {cargando ? (

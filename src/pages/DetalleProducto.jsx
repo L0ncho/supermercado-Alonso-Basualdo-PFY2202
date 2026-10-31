@@ -3,9 +3,12 @@ import Aviso from '../components/Aviso.jsx'
 import EstadoStock from '../components/EstadoStock.jsx'
 import TituloPagina from '../components/TituloPagina.jsx'
 import { useInventario } from '../hooks/useInventario.js'
+import { clasesSuperficie } from '../styles/clases.js'
 import { formatearPrecio } from '../utils/formato.js'
 import { buscarProductoPorId } from '../utils/inventario.js'
-import './DetalleProducto.css'
+
+const clasesTermino = 'text-sm text-texto-suave'
+const clasesDato = 'mb-3 text-lg font-semibold sm:mb-0'
 
 function DetalleProducto() {
   const { id } = useParams()
@@ -13,7 +16,7 @@ function DetalleProducto() {
 
   if (cargando) {
     return (
-      <section className="detalle">
+      <section className={clasesSuperficie}>
         <TituloPagina texto="Detalle del producto" />
         <h1>Detalle del producto</h1>
         <Aviso>Cargando producto…</Aviso>
@@ -23,7 +26,7 @@ function DetalleProducto() {
 
   if (error) {
     return (
-      <section className="detalle">
+      <section className={clasesSuperficie}>
         <TituloPagina texto="Detalle del producto" />
         <h1>Detalle del producto</h1>
         <Aviso tipo="error">{error.message}</Aviso>
@@ -35,7 +38,7 @@ function DetalleProducto() {
 
   if (!producto) {
     return (
-      <section className="detalle">
+      <section className={clasesSuperficie}>
         <TituloPagina texto="Producto no encontrado" />
         <h1>Producto no encontrado</h1>
         <p>No existe un producto con el código {id}.</p>
@@ -45,20 +48,20 @@ function DetalleProducto() {
   }
 
   return (
-    <article className="detalle">
+    <article className={clasesSuperficie}>
       <TituloPagina texto={producto.nombre} />
-      <Link to="/inventario" className="detalle__volver">← Volver al inventario</Link>
+      <Link to="/inventario" className="mb-4 inline-block">← Volver al inventario</Link>
       <h1>{producto.nombre}</h1>
       <EstadoStock stock={producto.stock} stockMinimo={producto.stockMinimo} />
-      <dl className="detalle__datos">
-        <dt>Categoría</dt>
-        <dd>{producto.categoria}</dd>
-        <dt>Precio</dt>
-        <dd>{formatearPrecio(producto.precio)}</dd>
-        <dt>Stock actual</dt>
-        <dd>{producto.stock} unidades</dd>
-        <dt>Stock mínimo</dt>
-        <dd>{producto.stockMinimo} unidades</dd>
+      <dl className="mt-6 grid gap-1 sm:grid-cols-[max-content_1fr] sm:gap-x-8 sm:gap-y-3">
+        <dt className={clasesTermino}>Categoría</dt>
+        <dd className={clasesDato}>{producto.categoria}</dd>
+        <dt className={clasesTermino}>Precio</dt>
+        <dd className={clasesDato}>{formatearPrecio(producto.precio)}</dd>
+        <dt className={clasesTermino}>Stock actual</dt>
+        <dd className={clasesDato}>{producto.stock} unidades</dd>
+        <dt className={clasesTermino}>Stock mínimo</dt>
+        <dd className={clasesDato}>{producto.stockMinimo} unidades</dd>
       </dl>
     </article>
   )

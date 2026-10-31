@@ -25,8 +25,10 @@ function ListadoArticulos() {
         <Aviso tipo="error">{error.message}</Aviso>
       ) : (
         <>
-          <p>{textoTotal}</p>
-          <Link to="/articulos/nuevo">Ingresar nuevo artículo</Link>
+          <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <p>{textoTotal}</p>
+            <Link to="/articulos/nuevo">Ingresar nuevo artículo</Link>
+          </div>
           {total === 0 ? (
             <Aviso>No hay artículos registrados.</Aviso>
           ) : (

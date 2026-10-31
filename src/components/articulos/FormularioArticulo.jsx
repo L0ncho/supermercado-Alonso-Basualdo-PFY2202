@@ -12,6 +12,14 @@ const valoresIniciales = {
   stockMinimo: '',
 }
 
+const clasesCampo = 'flex flex-col gap-1.5'
+const clasesEtiqueta = 'font-semibold'
+const clasesControl =
+  'w-full rounded-lg border border-borde bg-superficie px-3 py-2 text-texto aria-[invalid=true]:border-peligro'
+const clasesError = 'text-sm text-peligro'
+const clasesBotonSecundario =
+  'border-primario bg-superficie text-primario hover:bg-fondo hover:text-primario-oscuro'
+
 function FormularioArticulo({ categorias, productos, onAgregar }) {
   const [valores, setValores] = useState(valoresIniciales)
   const [errores, setErrores] = useState({})
@@ -24,7 +32,7 @@ function FormularioArticulo({ categorias, productos, onAgregar }) {
 
   function mostrarError(campo) {
     if (!errores[campo]) return null
-    return <p id={`error-${campo}`}>{errores[campo]}</p>
+    return <p id={`error-${campo}`} className={clasesError}>{errores[campo]}</p>
   }
 
   function manejarCambio(e) {
@@ -64,40 +72,43 @@ function FormularioArticulo({ categorias, productos, onAgregar }) {
   }
 
   return (
-    <form onSubmit={manejarEnvio} noValidate>
-      <div>
-        <label htmlFor="articulo-nombre">Nombre</label>
+    <form onSubmit={manejarEnvio} noValidate className="grid max-w-xl gap-4">
+      <div className={clasesCampo}>
+        <label htmlFor="articulo-nombre" className={clasesEtiqueta}>Nombre</label>
         <input
           id="articulo-nombre"
           name="nombre"
           type="text"
           value={valores.nombre}
           onChange={manejarCambio}
+          className={clasesControl}
           {...propsAccesibles('nombre')}
         />
         {mostrarError('nombre')}
       </div>
 
-      <div>
-        <label htmlFor="articulo-marca">Marca</label>
+      <div className={clasesCampo}>
+        <label htmlFor="articulo-marca" className={clasesEtiqueta}>Marca</label>
         <input
           id="articulo-marca"
           name="marca"
           type="text"
           value={valores.marca}
           onChange={manejarCambio}
+          className={clasesControl}
           {...propsAccesibles('marca')}
         />
         {mostrarError('marca')}
       </div>
 
-      <div>
-        <label htmlFor="articulo-categoria">Tipo de producto</label>
+      <div className={clasesCampo}>
+        <label htmlFor="articulo-categoria" className={clasesEtiqueta}>Tipo de producto</label>
         <select
           id="articulo-categoria"
           name="categoria"
           value={valores.categoria}
           onChange={manejarCambio}
+          className={clasesControl}
           {...propsAccesibles('categoria')}
         >
           <option value="">Selecciona un tipo</option>
@@ -108,54 +119,61 @@ function FormularioArticulo({ categorias, productos, onAgregar }) {
         {mostrarError('categoria')}
       </div>
 
-      <div>
-        <label htmlFor="articulo-precio">Precio</label>
-        <input
-          id="articulo-precio"
-          name="precio"
-          type="number"
-          min="1"
-          step="1"
-          value={valores.precio}
-          onChange={manejarCambio}
-          {...propsAccesibles('precio')}
-        />
-        {mostrarError('precio')}
+      <div className="grid gap-4 md:grid-cols-3">
+        <div className={clasesCampo}>
+          <label htmlFor="articulo-precio" className={clasesEtiqueta}>Precio</label>
+          <input
+            id="articulo-precio"
+            name="precio"
+            type="number"
+            min="1"
+            step="1"
+            value={valores.precio}
+            onChange={manejarCambio}
+            className={clasesControl}
+            {...propsAccesibles('precio')}
+          />
+          {mostrarError('precio')}
+        </div>
+
+        <div className={clasesCampo}>
+          <label htmlFor="articulo-stock" className={clasesEtiqueta}>Stock</label>
+          <input
+            id="articulo-stock"
+            name="stock"
+            type="number"
+            min="0"
+            step="1"
+            value={valores.stock}
+            onChange={manejarCambio}
+            className={clasesControl}
+            {...propsAccesibles('stock')}
+          />
+          {mostrarError('stock')}
+        </div>
+
+        <div className={clasesCampo}>
+          <label htmlFor="articulo-stock-minimo" className={clasesEtiqueta}>Stock mínimo</label>
+          <input
+            id="articulo-stock-minimo"
+            name="stockMinimo"
+            type="number"
+            min="0"
+            step="1"
+            value={valores.stockMinimo}
+            onChange={manejarCambio}
+            className={clasesControl}
+            {...propsAccesibles('stockMinimo')}
+          />
+          {mostrarError('stockMinimo')}
+        </div>
       </div>
 
-      <div>
-        <label htmlFor="articulo-stock">Stock</label>
-        <input
-          id="articulo-stock"
-          name="stock"
-          type="number"
-          min="0"
-          step="1"
-          value={valores.stock}
-          onChange={manejarCambio}
-          {...propsAccesibles('stock')}
-        />
-        {mostrarError('stock')}
-      </div>
-
-      <div>
-        <label htmlFor="articulo-stock-minimo">Stock mínimo</label>
-        <input
-          id="articulo-stock-minimo"
-          name="stockMinimo"
-          type="number"
-          min="0"
-          step="1"
-          value={valores.stockMinimo}
-          onChange={manejarCambio}
-          {...propsAccesibles('stockMinimo')}
-        />
-        {mostrarError('stockMinimo')}
-      </div>
-
-      <div>
+      <div className="flex flex-wrap gap-3">
         <button type="submit">Agregar artículo</button>
-        <button type="button" onClick={limpiar}>Limpiar</button>
+        <button type="button" onClick={limpiar} className={clasesBotonSecundario}>
+          Limpiar
+        </button>
       </div>
 
       {mensaje && (

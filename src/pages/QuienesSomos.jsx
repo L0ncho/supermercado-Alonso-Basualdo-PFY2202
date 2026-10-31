@@ -1,6 +1,8 @@
 import TituloPagina from '../components/TituloPagina.jsx'
 import { empresa, valores } from '../data/empresa.js'
-import './QuienesSomos.css'
+import { clasesTarjeta } from '../styles/clases.js'
+
+const clasesSeccion = `${clasesTarjeta} mb-6`
 
 function QuienesSomos() {
   return (
@@ -8,27 +10,27 @@ function QuienesSomos() {
       <TituloPagina texto="Quiénes somos" />
       <h1>Quiénes somos</h1>
 
-      <section className="quienes-somos__seccion">
+      <section className={clasesSeccion}>
         <h2>Nuestra historia</h2>
-        <p>{empresa.historia}</p>
+        <p className="max-w-[65ch]">{empresa.historia}</p>
       </section>
 
-      <section className="quienes-somos__seccion">
+      <section className={clasesSeccion}>
         <h2>Misión</h2>
-        <p>{empresa.mision}</p>
+        <p className="max-w-[65ch]">{empresa.mision}</p>
       </section>
 
-      <section className="quienes-somos__seccion">
+      <section className={clasesSeccion}>
         <h2>Visión</h2>
-        <p>{empresa.vision}</p>
+        <p className="max-w-[65ch]">{empresa.vision}</p>
       </section>
 
-      <section className="quienes-somos__valores">
-        <h2>Valores</h2>
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <h2 className="col-span-full mb-0">Valores</h2>
         {valores.map((valor) => (
-          <article key={valor.id} className="quienes-somos__tarjeta">
-            <h3>{valor.titulo}</h3>
-            <p>{valor.descripcion}</p>
+          <article key={valor.id} className={clasesTarjeta}>
+            <h3 className="mb-2 font-bold text-primario-oscuro">{valor.titulo}</h3>
+            <p className="text-texto-suave">{valor.descripcion}</p>
           </article>
         ))}
       </section>

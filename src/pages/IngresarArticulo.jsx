@@ -2,6 +2,7 @@ import Aviso from '../components/Aviso.jsx'
 import TituloPagina from '../components/TituloPagina.jsx'
 import FormularioArticulo from '../components/articulos/FormularioArticulo.jsx'
 import { useInventario } from '../hooks/useInventario.js'
+import { clasesSuperficie } from '../styles/clases.js'
 
 function IngresarArticulo() {
   const { productos, cargando, error, agregarProducto } = useInventario()
@@ -19,11 +20,13 @@ function IngresarArticulo() {
       ) : error ? (
         <Aviso tipo="error">{error.message}</Aviso>
       ) : (
-        <FormularioArticulo
-          categorias={categorias}
-          productos={productos}
-          onAgregar={agregarProducto}
-        />
+        <div className={clasesSuperficie}>
+          <FormularioArticulo
+            categorias={categorias}
+            productos={productos}
+            onAgregar={agregarProducto}
+          />
+        </div>
       )}
     </section>
   )

@@ -4,7 +4,6 @@ import TituloPagina from '../components/TituloPagina.jsx'
 import ResumenInventario from '../components/inventario/ResumenInventario.jsx'
 import { NOMBRE_SUPERMERCADO } from '../config/sitio.js'
 import { useInventario } from '../hooks/useInventario.js'
-import './Inicio.css'
 
 const accesos = [
   {
@@ -24,23 +23,31 @@ const accesos = [
   },
 ]
 
+const clasesTarjeta =
+  'flex h-full flex-col gap-1.5 rounded-xl border border-borde bg-superficie p-5 text-texto no-underline hover:border-primario'
+
 function Inicio() {
   const { productos, cargando, error } = useInventario()
 
   return (
-    <div className="inicio">
+    <div>
       <TituloPagina texto="Inicio" />
 
-      <section className="inicio__bienvenida">
-        <h1>Bienvenido a {NOMBRE_SUPERMERCADO}</h1>
-        <p>
+      <section className="mb-8 rounded-2xl bg-primario px-6 py-8 text-superficie md:px-10 md:py-12">
+        <h1 className="text-superficie">Bienvenido a {NOMBRE_SUPERMERCADO}</h1>
+        <p className="mb-6 max-w-[60ch]">
           Gestiona el inventario de nuestras tiendas: revisa el stock disponible,
           detecta a tiempo los productos por reponer y consulta el detalle de cada uno.
         </p>
-        <Link to="/inventario" className="inicio__boton">Ver inventario</Link>
+        <Link
+          to="/inventario"
+          className="inline-block rounded-lg bg-superficie px-5 py-3 text-primario no-underline hover:bg-fondo hover:text-primario-oscuro focus-visible:outline-superficie focus-visible:outline-offset-3"
+        >
+          Ver inventario
+        </Link>
       </section>
 
-      <section className="inicio__seccion" aria-labelledby="inicio-resumen">
+      <section aria-labelledby="inicio-resumen">
         <h2 id="inicio-resumen">Resumen del inventario</h2>
         {cargando ? (
           <Aviso>Cargando resumen…</Aviso>
@@ -51,14 +58,14 @@ function Inicio() {
         )}
       </section>
 
-      <section className="inicio__seccion" aria-labelledby="inicio-accesos">
+      <section className="mt-8" aria-labelledby="inicio-accesos">
         <h2 id="inicio-accesos">Accesos rápidos</h2>
-        <ul className="inicio__accesos">
+        <ul className="grid gap-4 md:grid-cols-3">
           {accesos.map((acceso) => (
             <li key={acceso.ruta}>
-              <Link to={acceso.ruta} className="inicio__tarjeta">
-                <span className="inicio__tarjeta-titulo">{acceso.titulo}</span>
-                <span className="inicio__tarjeta-descripcion">{acceso.descripcion}</span>
+              <Link to={acceso.ruta} className={clasesTarjeta}>
+                <span className="text-lg font-bold text-primario-oscuro">{acceso.titulo}</span>
+                <span className="font-normal text-texto-suave">{acceso.descripcion}</span>
               </Link>
             </li>
           ))}

@@ -1,10 +1,18 @@
 import { obtenerEstadoStock } from '../utils/inventario.js'
-import './EstadoStock.css'
+
+const clasesBase =
+  'inline-block rounded-full px-2.5 py-1 text-sm font-bold whitespace-nowrap text-superficie'
+
+const clasesPorEstado = {
+  disponible: 'bg-exito',
+  bajo: 'bg-alerta',
+  agotado: 'bg-peligro',
+}
 
 function EstadoStock({ stock, stockMinimo }) {
   const { clave, etiqueta } = obtenerEstadoStock({ stock, stockMinimo })
 
-  return <span className={`estado-stock estado-stock--${clave}`}>{etiqueta}</span>
+  return <span className={`${clasesBase} ${clasesPorEstado[clave]}`}>{etiqueta}</span>
 }
 
 export default EstadoStock

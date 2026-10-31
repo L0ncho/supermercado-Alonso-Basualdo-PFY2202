@@ -1,5 +1,11 @@
 import FilaProducto from './FilaProducto.jsx'
-import './TablaProductos.css'
+import {
+  clasesCabeceraTabla,
+  clasesContenedorTabla,
+  clasesCuerpoTabla,
+  clasesEncabezado,
+  clasesTabla,
+} from '../../styles/clases.js'
 
 function TablaProductos({ productos }) {
   if (productos.length === 0) {
@@ -7,18 +13,18 @@ function TablaProductos({ productos }) {
   }
 
   return (
-    <div className="tabla-productos__contenedor">
-      <table className="tabla-productos">
-        <thead>
+    <div className={clasesContenedorTabla}>
+      <table className={clasesTabla}>
+        <thead className={clasesCabeceraTabla}>
           <tr>
-            <th scope="col">Producto</th>
-            <th scope="col">Categoría</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Stock</th>
-            <th scope="col">Estado</th>
+            <th scope="col" className={clasesEncabezado}>Producto</th>
+            <th scope="col" className={clasesEncabezado}>Categoría</th>
+            <th scope="col" className={clasesEncabezado}>Precio</th>
+            <th scope="col" className={clasesEncabezado}>Stock</th>
+            <th scope="col" className={clasesEncabezado}>Estado</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className={clasesCuerpoTabla}>
           {productos.map((producto) => (
             <FilaProducto key={producto.id} producto={producto} />
           ))}

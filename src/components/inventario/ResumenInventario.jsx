@@ -1,5 +1,12 @@
 import { resumirInventario } from '../../utils/inventario.js'
-import './ResumenInventario.css'
+
+const clasesItem = 'rounded-xl border border-t-4 border-borde bg-superficie p-3 sm:px-5 sm:py-4'
+
+const clasesBordePorClave = {
+  total: 'border-t-primario',
+  bajo: 'border-t-alerta',
+  agotado: 'border-t-peligro',
+}
 
 function ResumenInventario({ productos }) {
   const resumen = resumirInventario(productos)
@@ -11,14 +18,11 @@ function ResumenInventario({ productos }) {
   ]
 
   return (
-    <dl className="resumen-inventario">
+    <dl className="mb-4 grid grid-cols-3 gap-3 sm:gap-4">
       {items.map((item) => (
-        <div
-          key={item.clave}
-          className={`resumen-inventario__item resumen-inventario__item--${item.clave}`}
-        >
-          <dt>{item.etiqueta}</dt>
-          <dd>{item.valor}</dd>
+        <div key={item.clave} className={`${clasesItem} ${clasesBordePorClave[item.clave]}`}>
+          <dt className="text-sm font-semibold text-texto-suave">{item.etiqueta}</dt>
+          <dd className="mt-1 text-[1.75rem] leading-tight font-bold sm:text-4xl">{item.valor}</dd>
         </div>
       ))}
     </dl>
