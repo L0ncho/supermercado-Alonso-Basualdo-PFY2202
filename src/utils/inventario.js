@@ -3,3 +3,16 @@ export function obtenerEstadoStock({stock, stockMinimo}) {
     if (stock < stockMinimo) return {clave: 'bajo', etiqueta: 'Stock bajo'}
     return {clave: 'disponible', etiqueta: 'Disponible'}
 }
+
+// Cuenta el total de productos y cuántos hay en cada estado de stock
+export function resumirInventario(productos) {
+    return productos.reduce(
+        (resumen, producto) => {
+            const {clave} = obtenerEstadoStock(producto)
+            resumen.total += 1
+            resumen[clave] += 1
+            return resumen
+        },
+        {total: 0, disponible: 0, bajo: 0, agotado: 0},
+    )
+}

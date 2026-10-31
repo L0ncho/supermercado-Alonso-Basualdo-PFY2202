@@ -1,32 +1,11 @@
-.inicio__resumen {
-  margin: 0 0 1rem;
-  color: var(--color-texto-suave);
-}
-
-.inicio__filtro {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  margin-bottom: 1rem;
-  font-weight: 600;
-}
-
-.inicio__filtro select {
-  padding: 0.5rem 0.75rem;
-  border: 1px solid var(--color-borde);
-  border-radius: 0.5rem;
-  background-color: var(--color-superficie);
-  color: var(--color-texto);
-}
-
 /* Móvil: cada fila de la tabla se muestra como una tarjeta */
-.inicio__tabla {
+.tabla-productos {
   display: block;
   width: 100%;
 }
 
 /* El encabezado se oculta a la vista, pero lo siguen leyendo los lectores de pantalla */
-.inicio__tabla thead {
+.tabla-productos thead {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -35,12 +14,12 @@
   white-space: nowrap;
 }
 
-.inicio__tabla tbody {
+.tabla-productos tbody {
   display: grid;
   gap: 1rem;
 }
 
-.inicio__tabla tr {
+.tabla-productos tr {
   display: block;
   padding: 0.5rem 1rem;
   border: 1px solid var(--color-borde);
@@ -48,7 +27,7 @@
   background-color: var(--color-superficie);
 }
 
-.inicio__tabla td {
+.tabla-productos td {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -57,12 +36,12 @@
   text-align: right;
 }
 
-.inicio__tabla td + td {
+.tabla-productos td + td {
   border-top: 1px solid var(--color-borde);
 }
 
 /* Etiqueta de cada dato, tomada del atributo data-label */
-.inicio__tabla td::before {
+.tabla-productos td::before {
   content: attr(data-label);
   color: var(--color-texto-suave);
   font-size: 0.9rem;
@@ -71,26 +50,20 @@
 }
 
 @media (min-width: 600px) {
-  .inicio__filtro {
-    flex-direction: row;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
   /* Desde 600px vuelve la tabla normal */
-  .inicio__tabla-contenedor {
+  .tabla-productos__contenedor {
     border: 1px solid var(--color-borde);
     border-radius: 0.75rem;
     overflow: hidden;
     background-color: var(--color-superficie);
   }
 
-  .inicio__tabla {
+  .tabla-productos {
     display: table;
     border-collapse: collapse;
   }
 
-  .inicio__tabla thead {
+  .tabla-productos thead {
     position: static;
     width: auto;
     height: auto;
@@ -99,11 +72,11 @@
     white-space: normal;
   }
 
-  .inicio__tabla tbody {
+  .tabla-productos tbody {
     display: table-row-group;
   }
 
-  .inicio__tabla tr {
+  .tabla-productos tr {
     display: table-row;
     padding: 0;
     border: 0;
@@ -111,22 +84,22 @@
     background-color: transparent;
   }
 
-  .inicio__tabla th,
-  .inicio__tabla td {
+  .tabla-productos th,
+  .tabla-productos td {
     display: table-cell;
     padding: 0.75rem 1rem;
     text-align: left;
   }
 
-  .inicio__tabla td + td {
+  .tabla-productos td + td {
     border-top: 0;
   }
 
-  .inicio__tabla td::before {
+  .tabla-productos td::before {
     content: none;
   }
 
-  .inicio__tabla thead th {
+  .tabla-productos thead th {
     background-color: var(--color-primario);
     color: var(--color-superficie);
     font-size: 0.9rem;
@@ -134,11 +107,11 @@
     letter-spacing: 0.03em;
   }
 
-  .inicio__tabla tbody tr:nth-child(even) {
+  .tabla-productos tbody tr:nth-child(even) {
     background-color: var(--color-fondo);
   }
 
-  .inicio__tabla tbody tr + tr {
+  .tabla-productos tbody tr + tr {
     border-top: 1px solid var(--color-borde);
   }
 }

@@ -1,11 +1,9 @@
 import { useState } from 'react'
-import { Link } from 'react-router'
-import EstadoStock from '../components/EstadoStock.jsx'
 import TituloPagina from '../components/TituloPagina.jsx'
+import FiltroCategoria from '../components/inventario/FiltroCategoria.jsx'
+import ResumenInventario from '../components/inventario/ResumenInventario.jsx'
+import TablaProductos from '../components/inventario/TablaProductos.jsx'
 import { productos } from '../data/productos.js'
-import { formatearPrecio } from '../utils/formato.js'
-import { obtenerEstadoStock } from '../utils/inventario.js'
-import './Inicio.css'
 
 const categorias = ['Todas', ...new Set(productos.map((p) => p.categoria))]
 
@@ -17,55 +15,17 @@ function Inicio() {
       ? productos
       : productos.filter((p) => p.categoria === categoria)
 
-  const porReponer = productos.filter(
-    (p) => obtenerEstadoStock(p).clave !== 'disponible',
-  ).length
-
   return (
     <section className="inicio">
       <TituloPagina texto="Inventario" />
       <h1>Inventario</h1>
-      <p className="inicio__resumen">
-        {productos.length} productos registrados · {porReponer} requieren reposición
-      </p>
-
-      <label className="inicio__filtro">
-        Categoría
-        <select value={categoria} onChange={(e) => setCategoria(e.target.value)}>
-          {categorias.map((c) => (
-            <option key={c} value={c}>{c}</option>
-          ))}
-        </select>
-      </label>
-
-      <div className="inicio__tabla-contenedor">
-        <table className="inicio__tabla">
-          <thead>
-            <tr>
-              <th scope="col">Producto</th>
-              <th scope="col">Categoría</th>
-              <th scope="col">Precio</th>
-              <th scope="col">Stock</th>
-              <th scope="col">Estado</th>
-            </tr>
-          </thead>
-          <tbody>
-            {productosFiltrados.map((producto) => (
-              <tr key={producto.id}>
-                <td data-label="Producto">
-                  <Link to={`/productos/${producto.id}`}>{producto.nombre}</Link>
-                </td>
-                <td data-label="Categoría">{producto.categoria}</td>
-                <td data-label="Precio">{formatearPrecio(producto.precio)}</td>
-                <td data-label="Stock">{producto.stock}</td>
-                <td data-label="Estado">
-                  <EstadoStock stock={producto.stock} stockMinimo={producto.stockMinimo} />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <ResumenInventario productos={productos} />
+      <FiltroCategoria
+        categorias={categorias}
+        valor={categoria}
+        onCambiar={setCategoria}
+      />
+      <TablaProductos productos={productosFiltrados} />
     </section>
   )
 }
