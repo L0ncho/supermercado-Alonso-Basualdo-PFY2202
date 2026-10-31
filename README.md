@@ -141,6 +141,7 @@ src/
 - **`/inventario` y `/articulos` leen el mismo estado con propósitos distintos.** `/inventario` es el control de stock (estado, resumen y filtro); `/articulos` es el catálogo de artículos registrados con nombre, marca, tipo y precio.
 - **El sitio está orientado al personal del supermercado.** Las páginas institucionales (Quiénes somos y Cómo comprar) cumplen los temas de la semana 1. Separar las vistas por roles requiere autenticación y queda fuera del alcance de esta actividad.
 - **El estado vive en memoria.** Los artículos agregados se pierden al recargar la página, porque la actividad no incluye persistencia.
+- **Volver al inicio al cambiar de página.** El componente `VolverArriba` (en `Layout`) ejecuta `window.scrollTo(0, 0)` cuando cambia la ruta. Se usa un componente propio porque `ScrollRestoration` solo está disponible con un data router (`createBrowserRouter`) y el proyecto usa el modo declarativo con `BrowserRouter`. Las navegaciones `POP` (botones Atrás y Adelante del navegador) se excluyen para que el navegador conserve la posición en la que el usuario estaba.
 
 
 
