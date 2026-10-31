@@ -1,8 +1,8 @@
 import { Link, useParams } from 'react-router'
+import EstadoStock from '../components/EstadoStock.jsx'
 import TituloPagina from '../components/TituloPagina.jsx'
 import { obtenerProductoPorId } from '../data/productos.js'
 import { formatearPrecio } from '../utils/formato.js'
-import { obtenerEstadoStock } from '../utils/inventario.js'
 import './DetalleProducto.css'
 
 function DetalleProducto() {
@@ -20,14 +20,12 @@ function DetalleProducto() {
     )
   }
 
-  const estado = obtenerEstadoStock(producto)
-
   return (
     <article className="detalle">
       <TituloPagina texto={producto.nombre} />
       <Link to="/" className="detalle__volver">← Volver al inventario</Link>
       <h1>{producto.nombre}</h1>
-      <span className={`estado estado--${estado.clave}`}>{estado.etiqueta}</span>
+      <EstadoStock stock={producto.stock} stockMinimo={producto.stockMinimo} />
       <dl className="detalle__datos">
         <dt>Categoría</dt>
         <dd>{producto.categoria}</dd>

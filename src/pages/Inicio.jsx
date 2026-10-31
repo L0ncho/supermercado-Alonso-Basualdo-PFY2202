@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
+import EstadoStock from '../components/EstadoStock.jsx'
 import TituloPagina from '../components/TituloPagina.jsx'
 import { productos } from '../data/productos.js'
 import { formatearPrecio } from '../utils/formato.js'
@@ -49,22 +50,19 @@ function Inicio() {
             </tr>
           </thead>
           <tbody>
-            {productosFiltrados.map((producto) => {
-              const estado = obtenerEstadoStock(producto)
-              return (
-                <tr key={producto.id}>
-                  <td data-label="Producto">
-                    <Link to={`/productos/${producto.id}`}>{producto.nombre}</Link>
-                  </td>
-                  <td data-label="Categoría">{producto.categoria}</td>
-                  <td data-label="Precio">{formatearPrecio(producto.precio)}</td>
-                  <td data-label="Stock">{producto.stock}</td>
-                  <td data-label="Estado">
-                    <span className={`estado estado--${estado.clave}`}>{estado.etiqueta}</span>
-                  </td>
-                </tr>
-              )
-            })}
+            {productosFiltrados.map((producto) => (
+              <tr key={producto.id}>
+                <td data-label="Producto">
+                  <Link to={`/productos/${producto.id}`}>{producto.nombre}</Link>
+                </td>
+                <td data-label="Categoría">{producto.categoria}</td>
+                <td data-label="Precio">{formatearPrecio(producto.precio)}</td>
+                <td data-label="Stock">{producto.stock}</td>
+                <td data-label="Estado">
+                  <EstadoStock stock={producto.stock} stockMinimo={producto.stockMinimo} />
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

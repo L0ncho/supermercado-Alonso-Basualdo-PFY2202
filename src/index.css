@@ -86,29 +86,6 @@ button:hover {
   outline-offset: 2px;
 }
 
-/* Insignias de estado del stock: fondo sólido con texto claro para asegurar contraste */
-.estado {
-  display: inline-block;
-  padding: 0.2rem 0.65rem;
-  border-radius: 999px;
-  color: var(--color-superficie);
-  font-size: 0.85rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
-
-.estado--disponible {
-  background-color: var(--color-exito);
-}
-
-.estado--bajo {
-  background-color: var(--color-alerta);
-}
-
-.estado--agotado {
-  background-color: var(--color-peligro);
-}
-
 @media (min-width: 768px) {
   h1 {
     font-size: 2.25rem;
