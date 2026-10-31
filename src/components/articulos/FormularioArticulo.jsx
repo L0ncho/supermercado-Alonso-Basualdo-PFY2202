@@ -159,7 +159,7 @@ function FormularioArticulo({ categorias, productos, onAgregar }) {
       </div>
 
       {mensaje && (
-        <Aviso>
+        <Aviso tipo="exito">
           {mensaje}{' '}
           <Link to="/articulos">Ver listado</Link>
         </Aviso>
