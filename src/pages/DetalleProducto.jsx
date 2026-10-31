@@ -39,7 +39,7 @@ function DetalleProducto() {
         <TituloPagina texto="Producto no encontrado" />
         <h1>Producto no encontrado</h1>
         <p>No existe un producto con el código {id}.</p>
-        <Link to="/">Volver al inventario</Link>
+        <Link to="/inventario">Volver al inventario</Link>
       </section>
     )
   }
@@ -47,7 +47,7 @@ function DetalleProducto() {
   return (
     <article className="detalle">
       <TituloPagina texto={producto.nombre} />
-      <Link to="/" className="detalle__volver">← Volver al inventario</Link>
+      <Link to="/inventario" className="detalle__volver">← Volver al inventario</Link>
       <h1>{producto.nombre}</h1>
       <EstadoStock stock={producto.stock} stockMinimo={producto.stockMinimo} />
       <dl className="detalle__datos">

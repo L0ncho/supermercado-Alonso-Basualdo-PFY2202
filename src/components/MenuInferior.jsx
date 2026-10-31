@@ -2,7 +2,8 @@ import { NavLink } from 'react-router'
 import './MenuInferior.css'
 
 const enlaces = [
-  { ruta: '/', texto: 'Inventario' },
+  { ruta: '/', texto: 'Inicio' },
+  { ruta: '/inventario', texto: 'Inventario' },
   { ruta: '/quienes-somos', texto: 'Quiénes somos' },
   { ruta: '/como-comprar', texto: 'Cómo comprar' },
 ]

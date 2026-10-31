@@ -38,7 +38,7 @@ function ComoComprar() {
         </p>
       </section>
 
-      <Link to="/" className="como-comprar__volver">Ver el inventario</Link>
+      <Link to="/inventario" className="como-comprar__volver">Ver el inventario</Link>
     </>
   )
 }

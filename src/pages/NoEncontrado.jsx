@@ -12,7 +12,7 @@ function NoEncontrado() {
       <p>La dirección que buscas no existe o fue movida.</p>
       <div className="no-encontrado__acciones">
         <button type="button" onClick={() => navigate(-1)}>Volver atrás</button>
-        <Link to="/">Ir al inventario</Link>
+        <Link to="/">Ir al inicio</Link>
       </div>
     </section>
   )
