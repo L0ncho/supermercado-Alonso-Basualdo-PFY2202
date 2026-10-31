@@ -3,7 +3,7 @@ import Aviso from '../components/Aviso.jsx'
 import TituloPagina from '../components/TituloPagina.jsx'
 import ResumenInventario from '../components/inventario/ResumenInventario.jsx'
 import { NOMBRE_SUPERMERCADO } from '../config/sitio.js'
-import { useProductos } from '../hooks/useProductos.js'
+import { useInventario } from '../hooks/useInventario.js'
 import './Inicio.css'
 
 const accesos = [
@@ -25,7 +25,7 @@ const accesos = [
 ]
 
 function Inicio() {
-  const { productos, cargando, error } = useProductos()
+  const { productos, cargando, error } = useInventario()
 
   return (
     <div className="inicio">

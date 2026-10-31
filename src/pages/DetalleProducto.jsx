@@ -2,14 +2,14 @@ import { Link, useParams } from 'react-router'
 import Aviso from '../components/Aviso.jsx'
 import EstadoStock from '../components/EstadoStock.jsx'
 import TituloPagina from '../components/TituloPagina.jsx'
-import { useProductos } from '../hooks/useProductos.js'
+import { useInventario } from '../hooks/useInventario.js'
 import { formatearPrecio } from '../utils/formato.js'
 import { buscarProductoPorId } from '../utils/inventario.js'
 import './DetalleProducto.css'
 
 function DetalleProducto() {
   const { id } = useParams()
-  const { productos, cargando, error } = useProductos()
+  const { productos, cargando, error } = useInventario()
 
   if (cargando) {
     return (

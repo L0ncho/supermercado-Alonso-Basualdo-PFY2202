@@ -4,10 +4,10 @@ import TituloPagina from '../components/TituloPagina.jsx'
 import FiltroCategoria from '../components/inventario/FiltroCategoria.jsx'
 import ResumenInventario from '../components/inventario/ResumenInventario.jsx'
 import TablaProductos from '../components/inventario/TablaProductos.jsx'
-import { useProductos } from '../hooks/useProductos.js'
+import { useInventario } from '../hooks/useInventario.js'
 
 function Inventario() {
-  const { productos, cargando, error } = useProductos()
+  const { productos, cargando, error } = useInventario()
   const [categoria, setCategoria] = useState('Todas')
 
   const categorias = ['Todas', ...new Set(productos.map((p) => p.categoria))]
