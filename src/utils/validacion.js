@@ -2,11 +2,11 @@ function normalizar(texto) {
   return texto.trim().toLowerCase()
 }
 
+// Solo acepta dígitos: rechaza vacío, signos, decimales, exponentes, hexadecimales y espacios internos
 function esEnteroDesde(valor, minimo) {
   const texto = String(valor).trim()
-  if (texto === '') return false
-  const numero = Number(texto)
-  return Number.isInteger(numero) && numero >= minimo
+  if (!/^\d+$/.test(texto)) return false
+  return Number(texto) >= minimo
 }
 
 export function validarArticulo(valores, productos) {

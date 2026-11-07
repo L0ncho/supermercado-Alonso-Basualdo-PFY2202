@@ -29,7 +29,7 @@ function DetalleProducto() {
       <section className={clasesSuperficie}>
         <TituloPagina texto="Detalle del producto" />
         <h1>Detalle del producto</h1>
-        <Aviso tipo="error">{error.message}</Aviso>
+        <Aviso tipo="error">{error.mensaje}</Aviso>
       </section>
     )
   }

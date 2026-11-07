@@ -58,21 +58,6 @@
     color: var(--color-primario-oscuro);
   }
 
-  button {
-    padding: 0.6rem 1.1rem;
-    border: 1px solid var(--color-primario);
-    border-radius: 0.5rem;
-    background-color: var(--color-primario);
-    color: var(--color-superficie);
-    font-weight: 600;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: var(--color-primario-oscuro);
-    border-color: var(--color-primario-oscuro);
-  }
-
   :focus-visible {
     outline: 3px solid var(--color-primario);
     outline-offset: 2px;

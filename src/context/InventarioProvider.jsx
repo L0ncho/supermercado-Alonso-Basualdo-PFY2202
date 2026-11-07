@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useReducer } from 'react'
 import { InventarioContext } from './InventarioContext.js'
 import { ACCIONES, estadoInicial, inventarioReducer } from '../reducers/inventarioReducer.js'
 import { obtenerProductos } from '../services/inventarioService.js'
+import { normalizarError } from '../utils/errores.js'
 
 function InventarioProvider({ children }) {
   const [estado, dispatch] = useReducer(inventarioReducer, estadoInicial)
@@ -17,7 +18,7 @@ function InventarioProvider({ children }) {
         if (activo) dispatch({ type: ACCIONES.CARGA_EXITOSA, payload: datos })
       })
       .catch((err) => {
-        if (activo) dispatch({ type: ACCIONES.CARGA_FALLIDA, payload: err })
+        if (activo) dispatch({ type: ACCIONES.CARGA_FALLIDA, payload: normalizarError(err) })
       })
 
     return () => {

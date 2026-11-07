@@ -22,7 +22,7 @@ function ListadoArticulos() {
       {cargando ? (
         <Aviso>Cargando artículos…</Aviso>
       ) : error ? (
-        <Aviso tipo="error">{error.message}</Aviso>
+        <Aviso tipo="error">{error.mensaje}</Aviso>
       ) : (
         <>
           <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">

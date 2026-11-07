@@ -24,7 +24,7 @@ function Inventario() {
       {cargando ? (
         <Aviso>Cargando inventario…</Aviso>
       ) : error ? (
-        <Aviso tipo="error">{error.message}</Aviso>
+        <Aviso tipo="error">{error.mensaje}</Aviso>
       ) : (
         <>
           <ResumenInventario productos={productos} />

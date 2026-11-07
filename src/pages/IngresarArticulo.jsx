@@ -18,7 +18,7 @@ function IngresarArticulo() {
       {cargando ? (
         <Aviso>Cargando inventario…</Aviso>
       ) : error ? (
-        <Aviso tipo="error">{error.message}</Aviso>
+        <Aviso tipo="error">{error.mensaje}</Aviso>
       ) : (
         <div className={clasesSuperficie}>
           <FormularioArticulo

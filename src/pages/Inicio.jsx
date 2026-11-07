@@ -4,6 +4,7 @@ import TituloPagina from '../components/TituloPagina.jsx'
 import ResumenInventario from '../components/inventario/ResumenInventario.jsx'
 import { NOMBRE_SUPERMERCADO } from '../config/sitio.js'
 import { useInventario } from '../hooks/useInventario.js'
+import { clasesTarjeta } from '../styles/clases.js'
 
 const accesos = [
   {
@@ -23,8 +24,7 @@ const accesos = [
   },
 ]
 
-const clasesTarjeta =
-  'flex h-full flex-col gap-1.5 rounded-xl border border-borde bg-superficie p-5 text-texto no-underline hover:border-primario'
+const clasesAcceso = `${clasesTarjeta} flex h-full flex-col gap-1.5 text-texto no-underline hover:border-primario`
 
 function Inicio() {
   const { productos, cargando, error } = useInventario()
@@ -52,7 +52,7 @@ function Inicio() {
         {cargando ? (
           <Aviso>Cargando resumen…</Aviso>
         ) : error ? (
-          <Aviso tipo="error">{error.message}</Aviso>
+          <Aviso tipo="error">{error.mensaje}</Aviso>
         ) : (
           <ResumenInventario productos={productos} />
         )}
@@ -63,7 +63,7 @@ function Inicio() {
         <ul className="grid gap-4 md:grid-cols-3">
           {accesos.map((acceso) => (
             <li key={acceso.ruta}>
-              <Link to={acceso.ruta} className={clasesTarjeta}>
+              <Link to={acceso.ruta} className={clasesAcceso}>
                 <span className="text-lg font-bold text-primario-oscuro">{acceso.titulo}</span>
                 <span className="font-normal text-texto-suave">{acceso.descripcion}</span>
               </Link>

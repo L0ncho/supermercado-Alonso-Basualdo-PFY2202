@@ -2,6 +2,15 @@ export const clasesTarjeta = 'rounded-xl border border-borde bg-superficie p-5'
 
 export const clasesSuperficie = 'rounded-xl border border-borde bg-superficie p-6'
 
+export const clasesCampo = 'flex flex-col gap-1.5'
+
+export const clasesEtiqueta = 'font-semibold'
+
+export const clasesControl =
+  'w-full rounded-lg border border-borde bg-superficie px-3 py-2 text-texto aria-[invalid=true]:border-peligro'
+
+export const clasesError = 'text-sm text-peligro'
+
 export const clasesContenedorTabla =
   'sm:overflow-hidden sm:rounded-xl sm:border sm:border-borde sm:bg-superficie'
 

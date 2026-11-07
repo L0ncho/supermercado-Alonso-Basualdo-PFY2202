@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router'
+import Boton from '../components/Boton.jsx'
 import TituloPagina from '../components/TituloPagina.jsx'
 
 function NoEncontrado() {
@@ -10,7 +11,7 @@ function NoEncontrado() {
       <h1>Página no encontrada</h1>
       <p className="text-texto-suave">La dirección que buscas no existe o fue movida.</p>
       <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
-        <button type="button" onClick={() => navigate(-1)}>Volver atrás</button>
+        <Boton onClick={() => navigate(-1)}>Volver atrás</Boton>
         <Link to="/">Ir al inicio</Link>
       </div>
     </section>
