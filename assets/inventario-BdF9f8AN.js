@@ -1,0 +1,1 @@
+function e({stock:e,stockMinimo:t}){return e===0?{clave:`agotado`,etiqueta:`Agotado`}:e<t?{clave:`bajo`,etiqueta:`Stock bajo`}:{clave:`disponible`,etiqueta:`Disponible`}}function t(t){return t.reduce((t,n)=>{let{clave:r}=e(n);return t.total+=1,t[r]+=1,t},{total:0,disponible:0,bajo:0,agotado:0})}function n(e,t){return e.find(e=>e.id===Number(t))}export{e as n,t as r,n as t};

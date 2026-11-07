@@ -1,0 +1,1 @@
+import{i as e,n as t}from"./index-DQULg6co.js";var n=e();function r({texto:e}){return(0,n.jsx)(`title`,{children:`${e} | ${t}`})}export{r as t};

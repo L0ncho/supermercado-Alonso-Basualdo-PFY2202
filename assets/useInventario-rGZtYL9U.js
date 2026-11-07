@@ -1,0 +1,1 @@
+import{c as e,l as t,t as n}from"./index-DQULg6co.js";var r=t(e(),1);function i(){let e=(0,r.useContext)(n);if(e===null)throw Error(`useInventario debe usarse dentro de InventarioProvider`);return e}export{i as t};
