@@ -7,7 +7,7 @@ import InventarioProvider from './context/InventarioProvider.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <InventarioProvider>
         <App />
       </InventarioProvider>
