@@ -6,7 +6,7 @@ function FilaArticulo({ articulo }) {
   return (
     <tr className={clasesFila}>
       <td data-label="Nombre" className={clasesCelda}>
-        <Link to={`/productos/${articulo.id}`}>{articulo.nombre}</Link>
+        <Link to={`/articulos/${articulo.id}`}>{articulo.nombre}</Link>
       </td>
       <td data-label="Marca" className={clasesCelda}>{articulo.marca}</td>
       <td data-label="Tipo" className={clasesCelda}>{articulo.categoria}</td>

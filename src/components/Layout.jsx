@@ -1,4 +1,6 @@
+import { Suspense } from 'react'
 import { Link, Outlet } from 'react-router'
+import Aviso from './Aviso.jsx'
 import MenuGestion from './MenuGestion.jsx'
 import MenuInferior from './MenuInferior.jsx'
 import VolverArriba from './VolverArriba.jsx'
@@ -20,7 +22,10 @@ function Layout() {
         </div>
       </header>
       <main className="mx-auto max-w-240 px-4 py-6">
-        <Outlet />
+        {/* Solo el contenido espera la carga de la página; encabezado y menús siguen visibles */}
+        <Suspense fallback={<Aviso>Cargando página…</Aviso>}>
+          <Outlet />
+        </Suspense>
       </main>
       <MenuInferior />
     </div>

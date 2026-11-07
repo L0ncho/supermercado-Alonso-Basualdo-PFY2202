@@ -7,7 +7,7 @@ function FilaProducto({ producto }) {
   return (
     <tr className={clasesFila}>
       <td data-label="Producto" className={clasesCelda}>
-        <Link to={`/productos/${producto.id}`}>{producto.nombre}</Link>
+        <Link to={`/articulos/${producto.id}`}>{producto.nombre}</Link>
       </td>
       <td data-label="Categoría" className={clasesCelda}>{producto.categoria}</td>
       <td data-label="Precio" className={clasesCelda}>{formatearPrecio(producto.precio)}</td>
